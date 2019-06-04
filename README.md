@@ -4,7 +4,7 @@ A Docker Swarm cluster started up with terraform and saltstack.
 To replicate this environment you'll need to have a Google Cloud account,
 clone this repository and follow the steps below:
 
- 1. Change the variables at the start of the swarm-cluster.tf file
+ ## 1) Change the variables at the start of the swarm-cluster.tf file
 
  You can change any of the variables, but the main changes are:
 
@@ -13,7 +13,7 @@ clone this repository and follow the steps below:
  - pub_key and,
  - priv_key
 
- 2. Run the terraform commands:
+ ## 2) Run the terraform commands:
 
  ```bash
  $ terraform init
@@ -33,7 +33,7 @@ clone this repository and follow the steps below:
  The first instance (swarm-cluster-1) will be the salt master, any other will
  be a minion.
 
- 3. Login to the salt master instance
+ ## 3) Login to the salt master instance
 
  ```bash
  $ gcloud compute ssh ubuntu@swarm-cluster-1 --zone=us-central1-b --ssh-key-file=THE/PATH/TO/YOUR/PRIVATE/KEY
@@ -42,4 +42,15 @@ clone this repository and follow the steps below:
 
  ```bash
  $ ssh -i THE/PATH/TO/YOUR/PRIVATE/KEY ubuntu@THE_SWARM_CLUSTER_1_PUBLIC_IP
+ ```
+
+ If you changed the USER variable in the swarm-cluster.tf file switch them in
+ the above commands.
+ Do the same to the zone.
+
+ Inside the instance run the command to follow up the syslog and see when is
+ gonna finish.
+
+ ```bash
+ $ tail -f /var/log/syslog | grep startup-script
  ```
