@@ -73,7 +73,7 @@ resource "google_compute_instance" "swarm-cluster" {
     else
       cd /tmp && curl -L https://bootstrap.saltstack.com -o install_salt.sh
       ln -s /home/ubuntu/salt /srv
-      sh /tmp/install_salt.sh -M && bash /salt/salt-master-config.sh
+      sh /tmp/install_salt.sh -M && bash /srv/salt/salt-master-config.sh
     fi
 <<<<<<< HEAD
 >>>>>>> 39dfece... Changed a environment variable
