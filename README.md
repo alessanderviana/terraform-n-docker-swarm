@@ -2,7 +2,7 @@
 A Docker Swarm cluster started up with terraform and saltstack.
 
 To replicate this environment you'll need to have a Google Cloud account,
-clone this repository and follow the steps below:
+fork this repository and follow the steps below:
 
  ## 1) Change the variables at the start of the swarm-cluster.tf file
 
@@ -12,6 +12,13 @@ clone this repository and follow the steps below:
  - credentials,
  - pub_key and,
  - priv_key
+
+ You'll have to change also the first line of the startup script in the
+ swarm-cluster.tf file to your repository.
+
+ ```
+ cd /root && git clone https://github.com/alessanderviana/terraform-n-docker-swarm.git
+ ```
 
  ## 2) Run the terraform commands:
 
@@ -50,10 +57,10 @@ clone this repository and follow the steps below:
  Do the same to the zone.
 
  Inside the instance run the command to follow up the syslog and see when is
- gonna finish.
+ gonna finish. Better with root user.
 
  ```bash
- $ tail -f /var/log/syslog | grep startup-script
+ # tail -f /var/log/syslog | grep startup-script
  ```
  At the end, it'll be show a saltstack report and a message saying that the
  startup script finished.
@@ -62,7 +69,7 @@ clone this repository and follow the steps below:
  unaccepted keys.
 
  ```bash
- $ salt-key -l un
+ # salt-key -l un
  ```
 
  The number of keys listed shall be equals to the total number of instances
@@ -77,8 +84,16 @@ clone this repository and follow the steps below:
  instance (with root).
 
  ```bash
- $ systemctl restart salt-minion
+ # systemctl restart salt-minion
  ```
 
  Run again the command `salt-key -l un` and with everything right, lets to the
  next step.
+
+ ## 4) Run the cluster init script
+
+ ```bash
+ # bash terraform-n-docker-swarm/salt/docker-swarm-init-cluster.sh
+ ```
+
+ What does it do?
