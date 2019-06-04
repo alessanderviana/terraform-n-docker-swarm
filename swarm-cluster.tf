@@ -62,6 +62,7 @@ resource "google_compute_instance" "swarm-cluster" {
       cd /tmp && curl -L https://bootstrap.saltstack.com -o install_salt.sh
       sh /tmp/install_salt.sh -M && bash /srv/salt/salt-master-config.sh
     fi
+    echo '========== Applying the Salt state =========='
     salt-call state.apply --local
 SCRIPT
 
