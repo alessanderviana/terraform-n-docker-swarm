@@ -8,4 +8,4 @@ SALT_MASTER_IP=$( gcloud compute instances list --filter="(name=swarm-cluster-1 
 echo '========== Configuring Salt minion =========='
 sed -i 's/#master: salt/master: '$SALT_MASTER_IP'/' /etc/salt/minion
 echo '========== Restarting service =========='
-systemctl restart salt-minion
+systemctl enable salt-minion && systemctl restart salt-minion

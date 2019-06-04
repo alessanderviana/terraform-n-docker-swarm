@@ -11,9 +11,8 @@ mkdir -p /srv/pillar
 echo '========== Configuring Salt minion =========='
 sed -i 's/#master: salt/master: 127.0.0.1/' /etc/salt/minion
 echo '========== Restarting services =========='
-systemctl restart salt-master && systemctl restart salt-minion
+systemctl restart salt-master
+systemctl enable salt-minion && systemctl restart salt-minion
 
 # tail -f /var/log/syslog | grep startup-script
-# salt-key -L
-# salt-key -A -y
 # salt '*' test.ping
