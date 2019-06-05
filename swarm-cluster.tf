@@ -64,6 +64,7 @@ resource "google_compute_instance" "swarm-cluster" {
     fi
     echo '========== Applying the Salt state =========='
     salt-call state.apply --local
+    systemctl stop sshguard && systemctl disable sshguard
     systemctl restart salt-minion
 SCRIPT
 
