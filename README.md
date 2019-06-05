@@ -67,6 +67,8 @@ fork this repository and follow the steps below:
  At the end, it'll be show a saltstack report and a message saying that the
  startup script finished.
 
+ ![syslog-startup-script](pictures/syslog-startup-script.png)
+
  Then to verify if the minions also finished, run the command to list the salt
  unaccepted keys.
 
