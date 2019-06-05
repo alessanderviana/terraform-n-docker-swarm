@@ -122,7 +122,7 @@ fork this repository and follow the steps below:
  | OBS                                                                        |
  | -------------------------------------------------------------------------- |
  | This app takes almost one minute to be available, because it compiles the  |
- | dependencies each time your run a container from its image                 |
+ | dependencies each time you run a container from its image
 
  This is a sample app that have the endpoints 'hello' and 'word'. You can access
  them inside the instances with `curl localhost:4000/api/hello` and
