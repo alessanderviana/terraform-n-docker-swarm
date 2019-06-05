@@ -19,8 +19,8 @@ TOKEN=$( docker swarm join-token worker | grep join )
 # Get the swarm nodes (no leaders)
 SWARM_NODES=$( salt-key -l acc | grep -v Keys | grep -v cluster-1 )
 
-echo "Waiting 5 seconds ..."
-sleep 5
+echo "Waiting 7 seconds ..."
+for i in {1..7}; do echo -n .; sleep 1; done; echo ""
 
 # Join the nodes to the cluster
 echo "Joining nodes ..."
