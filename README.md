@@ -93,7 +93,15 @@ fork this repository and follow the steps below:
  ## 4) Run the cluster init script
 
  ```bash
- # bash terraform-n-docker-swarm/salt/docker-swarm-init-cluster.sh
+ # bash ~/terraform-n-docker-swarm/salt/docker-swarm-init-cluster.sh
  ```
 
- What does it do?
+ ### What does it do?
+
+ This script does the following:
+
+ - Accepts / enables all the salt keys listed in the previous step,
+ - Initializes the cluster in the main node (swarm-cluster-1),
+ - Gets the join-token for workers nodes,
+ - Lists the no main nodes,
+ - And joins these nodes to the cluster.
