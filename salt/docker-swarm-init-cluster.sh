@@ -25,3 +25,7 @@ sleep 5
 # Join the nodes to the cluster
 echo "Joining nodes ..."
 for I in $( echo $SWARM_NODES ); do salt "$I" cmd.run "${TOKEN}"; done
+
+# Next steps
+# docker service create --name phoenix-app -p 4000:4000 --replicas 4 registry.gitlab.com/alessanderviana/sre-challenge/elixir-phoenix:latest
+# echo "0/30 * * * * root docker run -ti registry.gitlab.com/alessanderviana/sre-challenge/elixir-phoenix:latest mix talk" >> /etc/crontab
