@@ -19,6 +19,8 @@ fork this repository and follow the steps below:
  ```
  cd /root && git clone https://github.com/alessanderviana/terraform-n-docker-swarm.git
  ```
+ If you changes the repository name, you'll have to change the symlink creation
+ line too.
 
  ## 2) Run the terraform commands:
 
@@ -105,3 +107,25 @@ fork this repository and follow the steps below:
  - Gets the join-token for workers nodes,
  - Lists the no main nodes,
  - And joins these nodes to the cluster.
+
+ After that your cluster will be up. To check your cluster nodes you can use
+ the command `docker node ls`.
+
+ And have fun!
+
+ You can create a Docker swarm service with any Docker image.
+
+ ```
+ docker service create --name phoenix-app -p 4000:4000 --replicas 4 registry.gitlab.com/alessanderviana/sre-challenge/elixir-phoenix:latest
+ ```
+ | ---- |
+ | OBS: This app takes almost one minute to be available, because it compiles |
+ | the dependencies each time your run a container from its image |
+
+ This is a sample app that have the endpoints 'hello' and 'word'. You can access
+ them inside the instances with `curl localhost:4000/api/hello` and
+ `curl localhost:4000/api/word`.
+
+ Or externally (if the port 4000 is allowed in your Google firewall rules) with
+ `curl YOUR_INSTANCE_EXTERNAL_IP:4000/api/hello` and
+ `curl YOUR_INSTANCE_EXTERNAL_IP:4000/api/word`.
