@@ -119,9 +119,10 @@ fork this repository and follow the steps below:
  docker service create --name phoenix-app -p 4000:4000 --replicas 4 registry.gitlab.com/alessanderviana/sre-challenge/elixir-phoenix:latest
  ```
 
+ | OBS                                                                        |
  | -------------------------------------------------------------------------- |
- | OBS: This app takes almost one minute to be available, because it compiles |
- |      the dependencies each time your run a container from its image        |
+ | This app takes almost one minute to be available, because it compiles the  |
+ | dependencies each time your run a container from its image                 |
 
  This is a sample app that have the endpoints 'hello' and 'word'. You can access
  them inside the instances with `curl localhost:4000/api/hello` and
