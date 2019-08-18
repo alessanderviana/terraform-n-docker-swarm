@@ -1,0 +1,14 @@
+
+docker service create --name phoenix-app -p 4000:4000 --replicas 4 registry.gitlab.com/alessanderviana/sre-challenge/elixir-phoenix:latest
+
+crontab -l > cronbkp
+echo "*/3 * * * * /usr/bin/docker run -ti registry.gitlab.com/alessanderviana/sre-challenge/elixir-phoenix:latest mix talk" >> cronbkp
+crontab cronbkp
+
+echo "0/3 * * * * root docker run -ti registry.gitlab.com/alessanderviana/sre-challenge/elixir-phoenix:latest mix talk" >> /etc/crontab
+
+
+registry.gitlab.com/alessanderviana/sre-challenge/elixir-phoenix:latest
+
+
+

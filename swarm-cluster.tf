@@ -63,8 +63,18 @@ resource "google_compute_instance" "swarm-cluster" {
 }
 
  metadata_startup_script = <<SCRIPT
+<<<<<<< HEAD
     curl -L https://bootstrap.saltstack.com | sh
     systemctl stop salt-minion && systemctl disable salt-minion
+=======
+    HOST_NUMBER=$( hostname | awk -F'-' '{ print $NF }' )
+    if [ $HOST_NUMBER -gt 1 ]; then
+      curl -L https://bootstrap.saltstack.com | sh
+    else
+      cd /tmp && curl -L https://bootstrap.saltstack.com -o install_salt.sh
+      sh /tmp/install_salt.sh -M && bash /salt/salt-master-config.sh
+    fi
+>>>>>>> 39dfece... Changed a environment variable
     ln -s /home/ubuntu/salt /srv
     salt-call state.apply --local
     salt-call service.restart nginx --local
