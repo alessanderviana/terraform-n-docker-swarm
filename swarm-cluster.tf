@@ -72,10 +72,14 @@ resource "google_compute_instance" "swarm-cluster" {
       curl -L https://bootstrap.saltstack.com | sh
     else
       cd /tmp && curl -L https://bootstrap.saltstack.com -o install_salt.sh
+      ln -s /home/ubuntu/salt /srv
       sh /tmp/install_salt.sh -M && bash /salt/salt-master-config.sh
     fi
+<<<<<<< HEAD
 >>>>>>> 39dfece... Changed a environment variable
     ln -s /home/ubuntu/salt /srv
+=======
+>>>>>>> 063bfcb... Moved the position of link creation line
     salt-call state.apply --local
     salt-call service.restart nginx --local
     salt-call service.restart jenkins --local
